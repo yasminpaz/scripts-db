@@ -1,4 +1,3 @@
--- Tabela Artista
 CREATE TABLE Artista (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -7,14 +6,12 @@ CREATE TABLE Artista (
     nacionalidade VARCHAR(50)
 );
 
--- Tabela Local
 CREATE TABLE Local (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     endereco VARCHAR(200)
 );
 
--- Tabela Evento
 CREATE TABLE Evento (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -28,7 +25,6 @@ CREATE TABLE Evento (
 
 CREATE INDEX idx_evento_local_id ON Evento(local_id);
 
--- Tabela Cliente
 CREATE TABLE Cliente (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -40,14 +36,12 @@ CREATE TABLE Cliente (
 
 CREATE INDEX idx_cliente_cpf ON Cliente(cpf);
 
--- Tabela Tipo_Ingresso
 CREATE TABLE Tipo_Ingresso (
     id SERIAL PRIMARY KEY,
     descricao VARCHAR(100) NOT NULL,
     percentual_desconto DECIMAL(5,2)
 );
 
--- Tabela Ingresso
 CREATE TABLE Ingresso (
     id SERIAL PRIMARY KEY,
     evento_id INTEGER NOT NULL,
@@ -61,7 +55,6 @@ CREATE TABLE Ingresso (
 CREATE INDEX idx_ingresso_evento_id ON Ingresso(evento_id);
 CREATE INDEX idx_ingresso_tipo_id ON Ingresso(tipo_ingresso_id);
 
--- Tabela Venda
 CREATE TABLE Venda (
     id SERIAL PRIMARY KEY,
     cliente_id INTEGER NOT NULL,
@@ -73,7 +66,6 @@ CREATE TABLE Venda (
 
 CREATE INDEX idx_venda_cliente_id ON Venda(cliente_id);
 
--- Tabela ItemVenda
 CREATE TABLE ItemVenda (
     id SERIAL PRIMARY KEY,
     venda_id INTEGER NOT NULL,
@@ -85,7 +77,6 @@ CREATE TABLE ItemVenda (
 CREATE INDEX idx_itemvenda_venda_id ON ItemVenda(venda_id);
 CREATE INDEX idx_itemvenda_ingresso_id ON ItemVenda(ingresso_id);
 
--- Tabela Setor
 CREATE TABLE Setor (
     id SERIAL PRIMARY KEY,
     local_id INTEGER NOT NULL,
@@ -96,7 +87,6 @@ CREATE TABLE Setor (
 
 CREATE INDEX idx_setor_local_id ON Setor(local_id);
 
--- Tabela Pagamento
 CREATE TABLE Pagamento (
     id SERIAL PRIMARY KEY,
     venda_id INTEGER NOT NULL,

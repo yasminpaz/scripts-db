@@ -2,7 +2,6 @@
 --INSERT INTO Local (nome, endereco, lotacao_maxima) VALUES ('Maracana', 'R. Prof. Eurico Rabelo, 100', 78838);
 -- INSERT INTO Local ("endereco", "lotacao_maxima", "nome") values ('R. José dos Reis, 425', 44661, 'Nilton Santos')
 
---Espera-se que funcione pois está nos limites estabelecidos pela lotaçao
 DO $$
 DECLARE
     arena_id INTEGER;
@@ -21,7 +20,6 @@ BEGIN
     (arena_id, 'Pista', 1661);
 END $$;
 
--- Verifica capacidade restante
 SELECT 
     lotacao_maxima,
     (SELECT COALESCE(SUM(capacidade), 0) FROM Setor WHERE local_id = l.id) AS capacidade_total,
@@ -34,10 +32,8 @@ DO $$
 DECLARE
     arena_id INTEGER;
 BEGIN
-    -- Busca o id do local 'Arena Central' e armazena em variável
     SELECT id INTO arena_id FROM Local WHERE nome = 'Nilton Santos';
 
-    -- Usa a variável para inserir setores
     INSERT INTO Setor (local_id, nome, capacidade) VALUES 
     (arena_id, 'Premium', 1001);
 END $$;

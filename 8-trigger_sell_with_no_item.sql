@@ -3,7 +3,6 @@ RETURNS TRIGGER AS $$
 DECLARE
     total_itens INTEGER;
 BEGIN
-    -- Após DELETE ou UPDATE, verifica se venda tem pelo menos um item
     SELECT COUNT(*) INTO total_itens FROM ItemVenda WHERE venda_id = OLD.venda_id;
 
     IF total_itens = 0 THEN
