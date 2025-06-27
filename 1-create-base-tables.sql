@@ -23,6 +23,16 @@ CREATE TABLE Evento (
     CONSTRAINT fk_evento_local FOREIGN KEY (local_id) REFERENCES Local(id)
 );
 
+CREATE TABLE evento_artista (
+    id SERIAL PRIMARY KEY,
+    evento_id INTEGER NOT NULL,
+    artista_id INTEGER NOT NULL,
+
+    CONSTRAINT fk_evento FOREIGN KEY (evento_id) REFERENCES Evento(id),
+    CONSTRAINT fk_artista FOREIGN KEY (artista_id) REFERENCES Artista(id)
+);
+
+
 CREATE INDEX idx_evento_local_id ON Evento(local_id);
 
 CREATE TABLE Cliente (
