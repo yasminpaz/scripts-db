@@ -1,5 +1,6 @@
 
 
+ALTER TABLE evento DROP COLUMN modelo_distribuicao;
 
 CREATE TABLE Modelo_Distribuicao (
     id SERIAL PRIMARY KEY,
